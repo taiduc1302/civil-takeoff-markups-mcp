@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+examples/*_preview.png
+# never commit real drawings or any register built from one
+*.bax
+drawings/
+private/

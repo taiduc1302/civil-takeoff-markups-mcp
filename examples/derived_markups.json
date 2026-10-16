@@ -1,0 +1,110 @@
+{
+ "scale": "1 mm = 0.5 m",
+ "printed": {
+  "S-M1": 75.0,
+  "S-M2": 66.0,
+  "S-RCE1": 14.0,
+  "S-M3": 75.0
+ },
+ "runs": [
+  {
+   "id": "S-M1",
+   "subject": "DUCT | S-M1 | Duct 8-125 C.E. 0+005.00 - 0+078.40",
+   "path": "M 238.35 1024.0 L 654.47 1024.0"
+  },
+  {
+   "id": "S-M2",
+   "subject": "DUCT | S-M2 | Duct 8-125 C.E. 0+084.00 - 0+150.00",
+   "path": "M 686.22 1024.0 L 748.58 1024.0 L 1054.41 1084.78"
+  },
+  {
+   "id": "S-RCE1",
+   "subject": "DUCT | S-RCE1 | Duct 8-125 reinforced C.E. 0+150.00 - 0+164.00",
+   "path": "M 1054.41 1084.78 L 1132.26 1100.26"
+  },
+  {
+   "id": "S-M3",
+   "subject": "DUCT | S-M3 | Duct 8-125 C.E. 0+171.00 - 0+246.00",
+   "path": "M 1171.18 1107.99 L 1202.13 1114.14 L 1588.21 1037.34"
+  }
+ ],
+ "resto": [
+  {
+   "id": "R-S-M1",
+   "subject": "RESTO | R-S-M1 | Trench patch 1.9 m 0+005.00 - 0+078.40",
+   "path": "M 238.35 1029.39 L 654.47 1029.39 L 654.47 1018.61 L 238.35 1018.61 H"
+  },
+  {
+   "id": "R-S-M2",
+   "subject": "RESTO | R-S-M2 | Trench patch 1.9 m 0+084.00 - 0+150.00",
+   "path": "M 686.22 1029.39 L 748.05 1029.39 L 1053.36 1090.07 L 1055.46 1079.5 L 749.11 1018.61 L 686.22 1018.61 H"
+  },
+  {
+   "id": "R-S-RCE1",
+   "subject": "RESTO | R-S-RCE1 | Trench patch 1.9 m 0+150.00 - 0+164.00",
+   "path": "M 1053.36 1090.07 L 1131.21 1105.54 L 1133.31 1094.97 L 1055.46 1079.5 H"
+  },
+  {
+   "id": "R-S-M3",
+   "subject": "RESTO | R-S-M3 | Trench patch 1.9 m 0+171.00 - 0+246.00",
+   "path": "M 1170.13 1113.27 L 1202.13 1119.63 L 1589.26 1042.62 L 1587.16 1032.05 L 1202.13 1108.65 L 1172.23 1102.71 H"
+  }
+ ],
+ "points": [
+  {
+   "id": "F-01",
+   "subject": "PARTS | F-01 | Bend 11.25 deg horiz. 0+095.00",
+   "rect": "739.58 1015.00 18.00 18.00",
+   "color": "#008C4A"
+  },
+  {
+   "id": "F-02",
+   "subject": "PARTS | F-02 | Bend 22.5 deg horiz. 0+176.56",
+   "rect": "1193.13 1105.14 18.00 18.00",
+   "color": "#008C4A"
+  },
+  {
+   "id": "OBS-001",
+   "subject": "CROSSING | OBS-001 | 250 W ABOVE 0+040.00",
+   "rect": "429.77 1017.00 14.00 14.00",
+   "color": "#F28000"
+  },
+  {
+   "id": "OBS-002",
+   "subject": "CROSSING | OBS-002 | 114 G ABOVE 0+120.00",
+   "rect": "880.60 1044.63 14.00 14.00",
+   "color": "#F28000"
+  },
+  {
+   "id": "OBS-003",
+   "subject": "CROSSING | OBS-003 | 300 STM ABOVE 0+157.00",
+   "rect": "1086.34 1085.52 14.00 14.00",
+   "color": "#F28000"
+  },
+  {
+   "id": "OBS-004",
+   "subject": "CROSSING | OBS-004 | 200 SAN BELOW 0+205.00",
+   "rect": "1353.24 1075.69 14.00 14.00",
+   "color": "#F28000"
+  },
+  {
+   "id": "V-01",
+   "subject": "VAULT | V-01 | Precast vault thru type 0+081.20",
+   "rect": "654.35 1008.00 32.00 32.00",
+   "color": "#7A2DB3"
+  },
+  {
+   "id": "V-02",
+   "subject": "VAULT | V-02 | Precast vault thru type 0+167.50",
+   "rect": "1135.72 1088.12 32.00 32.00",
+   "color": "#7A2DB3"
+  }
+ ],
+ "qa": [
+  {
+   "id": "QA-A",
+   "subject": "QA CHECK - DO NOT SUM | Sample A | reinforced extent vs printed START/END REINF.",
+   "path": "M 1057.95 1066.99 L 1135.8 1082.46"
+  }
+ ]
+}
