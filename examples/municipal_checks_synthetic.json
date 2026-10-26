@@ -1,0 +1,65 @@
+{
+  "project": {
+    "name": "Synthetic municipal duct-bank project (training only)",
+    "jurisdiction": "Exampletown, fictional jurisdiction",
+    "scope": "Civil duct-bank work on a public right-of-way; all details invented",
+    "checked_on": "2026-10-26"
+  },
+  "checks": [
+    {
+      "id": "permit_requirements",
+      "status": "OPEN",
+      "finding": "Determine excavation and construction permit triggers from official sources.",
+      "authority": "",
+      "source_ref": "",
+      "source_checked_on": "",
+      "responsible_party": "",
+      "reviewed_by": "",
+      "reviewed_on": ""
+    },
+    {
+      "id": "local_code_and_zoning",
+      "status": "OPEN",
+      "finding": "Check applicable local rules, site constraints and relevant code editions.",
+      "authority": "",
+      "source_ref": "",
+      "source_checked_on": "",
+      "responsible_party": "",
+      "reviewed_by": "",
+      "reviewed_on": ""
+    },
+    {
+      "id": "fees_and_deposits",
+      "status": "OPEN",
+      "finding": "Confirm permit, inspection, deposit and review fees with current rate schedules.",
+      "authority": "",
+      "source_ref": "",
+      "source_checked_on": "",
+      "responsible_party": "",
+      "reviewed_by": "",
+      "reviewed_on": ""
+    },
+    {
+      "id": "review_and_inspection_timing",
+      "status": "OPEN",
+      "finding": "Check approval steps, lead times and inspection constraints; do not invent timelines.",
+      "authority": "",
+      "source_ref": "",
+      "source_checked_on": "",
+      "responsible_party": "",
+      "reviewed_by": "",
+      "reviewed_on": ""
+    },
+    {
+      "id": "road_occupancy_and_utilities",
+      "status": "OPEN",
+      "finding": "Confirm road occupancy, traffic management and utility/agency sign-offs.",
+      "authority": "",
+      "source_ref": "",
+      "source_checked_on": "",
+      "responsible_party": "",
+      "reviewed_by": "",
+      "reviewed_on": ""
+    }
+  ]
+}
