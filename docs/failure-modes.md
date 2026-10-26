@@ -64,3 +64,9 @@ That says the method is **stable**. It does not say it is **right**. Stability a
 Drawing work, spreadsheet work and review run as separate agent sessions that audit each other.
 
 One caught the other counting vertical risers at poles as trench length — a measurement-rule disagreement, not an arithmetic error. Neither would have caught it alone.
+
+## Not finding a municipal requirement is not proof that none exists
+
+An estimator can miss unfamiliar local rules, permit fees or review timelines, especially in a new jurisdiction. An agent can make the same mistake faster: searching one city website, finding no result, and declaring the bid clear. Official sources may be out of date or split across municipal, utility and other agencies.
+
+The check that survives is a separate [jurisdiction risk register](municipal-context-check.md): record where and when the search was made, cite the applicable official source, assign the cost/schedule responsibility, and leave unknowns flagged. Human review determines applicability; an empty search result never automatically means NOT_APPLICABLE.
