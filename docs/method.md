@@ -2,6 +2,12 @@
 
 Six steps. The first two are refusals as much as actions.
 
+## Optional pre-bid context (separate from measurement)
+
+When the work is in an unfamiliar jurisdiction, run the [municipal context check](municipal-context-check.md) before treating the takeoff as bid-ready. Identify the authorities, applicable permit/code/fee/inspection/road-occupancy requirements, current official sources and bid-stage responsibilities. If an item cannot be verified, flag it for a person rather than silently assuming it does not apply. Record potential cost and schedule effects separately from quantity QA. This is not municipal approval or a substitute for the tender documents.
+
+The six steps below remain the native markup measurement workflow.
+
 ## 1. Fix the basis
 
 Record the exact file, its revision, and the **page label** — not just the page index. A measurement is only as trustworthy as the identity of the sheet under it, and "page 3" stops meaning anything the moment an addendum reorders a set.
