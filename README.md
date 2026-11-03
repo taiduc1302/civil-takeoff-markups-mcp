@@ -39,19 +39,19 @@ The file supplies the geometry. A person decides what to measure. The model does
 | `tools/validate_register.py` | Checks a register row against the traceability contract |
 | `tools/qa_state_transitions.py` | Checks a proposed status change against the lifecycle |
 | `tools/validate_municipal_checks.py` | Checks the municipal evidence register and flags unanswered questions |
-| `examples/` | Synthetic drawings, 21 agent-placed markups, derived geometry, and a fictional municipal-check register |
-| `tests/test_municipal_checks.py` | Dependency-free tests for the municipal-review guardrail |
+| `examples/` | Synthetic drawings and derived geometry (17 current candidates); the historical marked-PDF example is described as 21 placed markups but has not yet been independently reconciled with the current generator; fictional municipal-check register |
+| `tests/test_municipal_checks.py` | Dependency-free municipal-review tests |\n| `tests/test_place_markups.py` | Offline regression tests for the 17 current candidate markups, geometry, and payload shapes |\n| `tests/test_qa_transitions.py` / `tests/test_register.py` | Tests of existing lifecycle and legacy traceability-string validators |\n| `tools/validate_candidates.py` | Fail-closed structural validation before creating a proposed MCP payload |
 
 ## Try it
 
 ```bash
 pip install pymupdf
 python tools/build_synthetic_sheet.py     # writes examples/synthetic_sheet.pdf + derived_markups.json
-python tools/place_markups.py             # prints add_markup payloads for those markups
+python tools/place_markups.py             # validates current candidates; prints 17 add_markup payloads
 python tools/qa_state_transitions.py AI_PROPOSED APPROVED --actor automation   # exits 1, as it should
 ```
 
-Then open `examples/synthetic_sheet.pdf` in a markup tool with an MCP connector, set the page scale to 1 mm = 0.5 m, and have your agent send the payloads. Read the markups back: the tool computes the lengths and areas, not the model.
+**Fixture distinction:** the current generator builds **17 candidates** (4 runs, 4 areas, 8 static point shapes and 1 QA-only path). Historical documentation describes **21 markups** in an existing marked PDF; that artifact is preserved, not treated as automatically reconciled with today's generator. A synthetic candidate is not a verified live native measurement.\n\nThen open `examples/synthetic_sheet.pdf` in a markup tool with an MCP connector, set the page scale to 1 mm = 0.5 m, and have your agent send the payloads. Read the markups back: the tool computes the lengths and areas, not the model.
 
 On the reference run the tool returned 73.40, 66.00, 14.00 and 75.00 m. The sheet's own schedule prints 75.0 m for the first run — deliberately. That run is the point of the whole exercise: the agent does not pick a winner, it writes `CHECK` and shows both numbers.
 
