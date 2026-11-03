@@ -10,6 +10,10 @@ This repository is the method, not a product. It contains the written procedures
 
 **Also available:** an optional [municipal pre-bid risk check](docs/municipal-context-check.md) for permit, code, fee and schedule risks that a takeoff alone cannot detect.
 
+## Development roadmap and contributors
+
+**Current priority:** complete the [repository development roadmap](ROADMAP.md) and all six tracked issues [#2–#7](https://github.com/taiduc1302/civil-takeoff-markups-mcp/issues) before starting further expansion. Human contributors and AI coding agents should read [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md) and the [technical cross-repository audit](docs/ROADMAP_2026-11-02.md). Issues are the live task board; use `CLAIM`, `PROGRESS`, `BLOCKED` and `HANDOFF` comments to coordinate. Tests and evidence—not checkboxes alone—determine completion. Offline improvements do not require GitHub Actions or a paid AI service; actual Bluebeam-native capabilities still require explicit live acceptance evidence.
+
 ## The problem this solves
 
 General vision models read technical drawings poorly. Benchmarks built for exactly this question find that even frontier models struggle with measurement reading and fine-grained spatial grounding ([MeasureBench](https://arxiv.org/abs/2510.26865), [Picard et al.](https://arxiv.org/abs/2311.12668)). And the connector that lets an agent work inside a markup tool doesn't transmit the drawing itself: Bluebeam's documentation states that non-textual drawing details such as linework and shapes are not transmitted ([Revu and MCP](https://support.bluebeam.com/revu/resources/revu-mcp.html)).
