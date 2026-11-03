@@ -60,12 +60,12 @@ def validate(record):
             continue
         if not nonempty(item["measurement_type"]):
             errors.append(f"{ctx}.measurement_type: required")
-        if item["unit"] not in UNITS:
+        if not isinstance(item["unit"], str) or item["unit"] not in UNITS:
             errors.append(f"{ctx}.unit: unsupported")
         for field in ("scale_resolved", "scale_verified"):
             if not isinstance(item[field], bool):
                 errors.append(f"{ctx}.{field}: must be boolean")
-        identity = (item["source_sha256"], item["page_index"], item["markup_id"])
+        identity = (str(item["source_sha256"]), str(item["page_index"]), str(item["markup_id"]))
         if identity in seen:
             errors.append(f"{ctx}: duplicate markup source/page/id")
         seen.add(identity)
@@ -74,7 +74,7 @@ def validate(record):
             if not item.get("native_readback"):
                 pending.append(f"{ctx}: native saved readback absent")
             q = item.get("computed_quantity")
-            if not isinstance(q, (int, float)) or isinstance(q, bool) or not math.isfinite(q) or q < 0:
+            if not isinstance(q, (int, float)) or isinstance(q, bool) or not (0 <= q < float("inf")):
                 pending.append(f"{ctx}: finite nonnegative native computed quantity absent")
         if status in LATER:
             if item["unit"] != "ea" and (item["scale_resolved"] is not True or item["scale_verified"] is not True
@@ -91,7 +91,7 @@ def validate(record):
             if not isinstance(review, dict) or not all(nonempty(review.get(k)) for k in
                                                         ("reviewer", "decision_ref", "reviewed_on")):
                 pending.append(f"{ctx}: documented human decision absent (identity not authenticated)")
-        if status == "APPROVED" and item.get("human_review", {}).get("decision") != "APPROVE":
+        if status == "APPROVED" and (not isinstance(item.get("human_review"), dict) or item["human_review"].get("decision") != "APPROVE"):
             pending.append(f"{ctx}: recorded explicit APPROVE decision absent")
     return errors, pending
 
