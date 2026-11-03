@@ -42,7 +42,7 @@ The file supplies the geometry. A person decides what to measure. The model does
 | `examples/` | Synthetic drawings, 21 agent-placed markups, derived geometry, and a fictional municipal-check register |
 | `tests/test_municipal_checks.py` | Dependency-free tests for the municipal-review guardrail |
 
-## Try it
+**Experimental independent PDF readback:** [docs/vector-readback.md](docs/vector-readback.md) explains `tools/vector_readback.py`, which reads geometry/text back from a saved PDF with source hashing. It is local, read-only, and deliberately does not claim it selected the correct drawing feature.\n\n## Try it
 
 ```bash
 pip install pymupdf
