@@ -55,7 +55,7 @@ def validate(record):
             errors.append(f"{ctx}.page_index: expected nonnegative zero-based integer")
         if not isinstance(item["source_sha256"], str) or not HASH.fullmatch(item["source_sha256"]):
             errors.append(f"{ctx}.source_sha256: expected 64 hex digits")
-        if item["status"] not in STATES:
+        if not isinstance(item["status"], str) or item["status"] not in STATES:
             errors.append(f"{ctx}.status: unsupported")
             continue
         if not nonempty(item["measurement_type"]):
