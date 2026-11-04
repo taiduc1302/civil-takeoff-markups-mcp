@@ -14,6 +14,10 @@ A local-first, reliable civil takeoff workflow:
 
 No model can make an engineering, commercial, or estimator approval. Live MCP capability is never inferred from vendor documentation alone.
 
+## Integrated partial milestones (not closed)
+
+- 2026-11-04: [PR #9](https://github.com/taiduc1302/civil-takeoff-markups-mcp/pull/9), [PR #10](https://github.com/taiduc1302/civil-takeoff-markups-mcp/pull/10), and [PR #11](https://github.com/taiduc1302/civil-takeoff-markups-mcp/pull/11) merged into `main`. The audit and verification limitations are in [docs/testing/OFFLINE_MERGE_AUDIT_2026-11-04.md](docs/testing/OFFLINE_MERGE_AUDIT_2026-11-04.md). **These are partial deliveries; #2, #3 and #4 remain open and their checkboxes below are intentionally not checked.**
+
 ## Required sequence and ownership
 
 **Open issues are the live task board.** They contain authoritative acceptance criteria and up-to-date progress comments. The checkboxes below are a roadmap view, not a substitute for checking the linked issue and related PRs. Update this file in the same PR that closes a stage. An issue stays open when work is blocked or tests have not run.
