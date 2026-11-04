@@ -67,6 +67,10 @@ python tools/validate_municipal_checks.py examples/municipal_checks_synthetic.js
 python -m unittest discover -s tests -v
 ```
 
+## External evidence-register validation (under development)
+
+A versioned external markup register can now be checked offline with [the evidence-register v1 contract](docs/evidence-register-v1.md) and `python tools/validate_evidence_register.py <register.json>`. This checks evidence presence and completeness; it **cannot** authenticate a reviewer or prove that quantities came from a live Revu session. The legacy semicolon-string helper remains separate.
+
 ## The three rules
 
 **1. Reading a quantity back is not verification.** It proves the tool measured the path you gave it. It says nothing about whether that path is on the right feature. Independent evidence has to be a *different kind* of evidence: a dimension printed on the drawing, the drawing's own vector geometry, or a rendered image of the markup in place that a person looks at.
