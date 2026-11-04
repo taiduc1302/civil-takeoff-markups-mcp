@@ -97,6 +97,15 @@ class EvidenceRegisterTests(unittest.TestCase):
         self.assertTrue(any("unit" in e for e in errors))
         self.assertTrue(any("human" in p for p in pending))
 
+    def test_malformed_status_types_are_rejected_without_crashing(self):
+        for bad_status in ([], {}, 7, None):
+            with self.subTest(status=bad_status):
+                d = register()
+                d["markups"][0]["status"] = bad_status
+                errors, pending = validate(d)
+                self.assertIn("status", " ".join(errors))
+                self.assertEqual(pending, [])
+
     def test_unsupported_schema_rejected(self):
         d = register()
         d["schema_version"] = 999
