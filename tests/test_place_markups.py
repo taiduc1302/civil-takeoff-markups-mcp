@@ -77,6 +77,20 @@ class CandidateTests(unittest.TestCase):
         item["runs"][0]["unit"] = "m2"
         self.assertIn("unexpected runs unit", " ".join(validate_candidates(item)))
 
+    def test_unhashable_unit_is_rejected_without_crashing(self):
+        for bad_unit in ([], {}, ["m"]):
+            with self.subTest(bad_unit=bad_unit):
+                item = copy.deepcopy(self.data)
+                item["runs"][0]["unit"] = bad_unit
+                self.assertIn("unsupported unit", " ".join(validate_candidates(item)))
+                with self.assertRaises(ValueError):
+                    build(item)
+
+    def test_huge_schedule_number_is_rejected_without_overflow(self):
+        item = copy.deepcopy(self.data)
+        item["printed"]["S-M1"] = 10 ** 400
+        self.assertIn("non-finite", " ".join(validate_candidates(item)))
+
     def test_schedule_nonfinite_rejected(self):
         item = copy.deepcopy(self.data)
         item["printed"]["S-M1"] = float("nan")
