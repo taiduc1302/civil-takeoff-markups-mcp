@@ -104,7 +104,7 @@ def validate_candidates(data, page=1):
                 errors.append(f"{context}: QA markup must be DO NOT SUM")
             elif group != "qa" and "DO NOT SUM" in subject:
                 errors.append(f"{context}: only QA group may use DO NOT SUM")
-            if "unit" in row and row["unit"] not in ALLOWED_UNITS:
+            if "unit" in row and (not isinstance(row["unit"], str) or row["unit"] not in ALLOWED_UNITS):
                 errors.append(f"{context}: unsupported unit {row['unit']!r}")
             if "unit" in row and row["unit"] != expected[group]:
                 errors.append(f"{context}: unexpected {group} unit {row['unit']!r}")
@@ -125,6 +125,6 @@ def validate_candidates(data, page=1):
     if not isinstance(printed, dict):
         errors.append("printed: expected schedule object")
     elif any(not isinstance(k, str) or not isinstance(v, (int, float)) or isinstance(v, bool)
-             or not math.isfinite(v) or v < 0 for k, v in printed.items()):
+             or not (0 <= v <= 1.7976931348623157e308) for k, v in printed.items()):
         errors.append("printed: non-finite or invalid schedule quantity")
     return errors
