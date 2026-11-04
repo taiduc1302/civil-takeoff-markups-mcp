@@ -14,6 +14,8 @@ import json
 import os
 import sys
 
+from validate_candidates import validate_candidates
+
 STYLE = {
     "duct":      {"type": "PolyLine", "intent": "Perimeter", "label": "Duct", "color": "#1A59D9", "linewidth": 4, "opacity": 0.6},
     "duct_rce":  {"type": "PolyLine", "intent": "Perimeter", "label": "Duct reinforced", "color": "#D91A1A", "linewidth": 4, "opacity": 0.6},
@@ -29,6 +31,9 @@ def markup(page, style, subject, shape_key, shape_value, **over):
 
 
 def build(mk, page=1):
+    problems = validate_candidates(mk, page=page)
+    if problems:
+        raise ValueError("invalid synthetic markup candidates: " + "; ".join(problems))
     out = []
     for r in mk["runs"]:
         out.append(markup(page, "duct_rce" if "RCE" in r["id"] else "duct", r["subject"], "path", r["path"]))
@@ -45,8 +50,13 @@ def build(mk, page=1):
 if __name__ == "__main__":
     here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     src = sys.argv[1] if len(sys.argv) > 1 else os.path.join(here, "examples", "derived_markups.json")
-    mk = json.load(open(src, encoding="utf-8"))
-    payload = build(mk)
+    with open(src, encoding="utf-8") as handle:
+        mk = json.load(handle)
+    try:
+        payload = build(mk)
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        raise SystemExit(2) from None
     print(json.dumps(payload, indent=1))
     print("\n%d markups. Set the page scale to %s first, then send these, then read them back."
           % (len(payload), mk.get("scale", "the sheet's scale")), file=sys.stderr)
