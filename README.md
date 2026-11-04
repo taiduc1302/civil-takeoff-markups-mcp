@@ -42,7 +42,7 @@ The file supplies the geometry. A person decides what to measure. The model does
 | `examples/` | Synthetic drawings and derived geometry (17 current candidates); the historical marked-PDF example is described as 21 placed markups but has not yet been independently reconciled with the current generator; fictional municipal-check register |
 | `tests/test_municipal_checks.py` | Dependency-free municipal-review tests |\n| `tests/test_place_markups.py` | Offline regression tests for the 17 current candidate markups, geometry, and payload shapes |\n| `tests/test_qa_transitions.py` / `tests/test_register.py` | Tests of existing lifecycle and legacy traceability-string validators |\n| `tools/validate_candidates.py` | Fail-closed structural validation before creating a proposed MCP payload |
 
-## Try it
+**Experimental independent PDF readback:** [docs/vector-readback.md](docs/vector-readback.md) explains `tools/vector_readback.py`, which reads geometry/text back from a saved PDF with source hashing. It is local, read-only, and deliberately does not claim it selected the correct drawing feature.\n\n## Try it
 
 ```bash
 pip install pymupdf
