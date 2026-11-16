@@ -1,6 +1,6 @@
 # Future RFC: Open-source Civil 3D Estimating Viewer and analytical visualization
 
-> **Status:** IDEA / DEFERRED — not implementation-ready, not a tested tool. Recorded 2026-11-16. Tracking issue: [#13](../../issues/13). **Priority rule:** complete the current [roadmap](../../ROADMAP.md) issues #2–#7 before implementing this proposal. Do not treat this document as permission to reprioritize work. Public repository: synthetic-only data, per [DATA_POLICY.md](../../DATA_POLICY.md).
+> **Status:** IDEA / DEFERRED — not implementation-ready, not a tested tool. Recorded 2026-11-16. Tracking issue: [#13](https://github.com/taiduc1302/civil-takeoff-markups-mcp/issues/13). **Priority rule:** complete the current [roadmap](../../ROADMAP.md) issues #2–#7 before implementing this proposal. Do not treat this document as permission to reprioritize work. Public repository: synthetic-only data, per [DATA_POLICY.md](../../DATA_POLICY.md).
 
 ## 1. Idea origin and evidence
 
