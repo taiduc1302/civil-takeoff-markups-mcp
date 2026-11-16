@@ -64,6 +64,10 @@ After reaching those gates: do a **final independent regression/security/documen
 6. On completion add a `HANDOFF` comment with commit/PR, tested scope, remaining limitations and next task. Link the PR in the issue.
 7. Update this roadmap's task checkboxes **only when** the related acceptance criteria are demonstrated and PRs merged. Re-read `main` after merging to avoid overwriting concurrent changes.
 
+## Deferred ideas (do not start before current roadmap completion)
+
+- [Issue #13 — Civil 3D Estimating Viewer, analytics, 4D/5D, and open-source PDF/backend research](https://github.com/taiduc1302/civil-takeoff-markups-mcp/issues/13): [full idea origin, candidate technologies, scope, phased acceptance and security constraints](docs/ideas/civil-3d-estimating-viewer-rfc.md). **Future RFC only; not implemented or authorized to displace #2–#7.** Reassess after all five current roadmap gates and final independent review.
+
 ## Privacy, cost and product boundaries
 
 - This is **public**. Never commit real tender documents, actual construction drawings, employer material/activity codebooks, protected BAX, rates, customer information, secrets, auth tokens or real-project registers. Do not copy from private repositories.
