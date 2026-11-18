@@ -11,7 +11,7 @@ STATUS: EXPERIMENTAL / MOCK-TESTED ONLY. No actual Open PDF Studio process, Wind
 - Converts zero-based evidence page index to one-based documented vendor API page.
 - Documented upstream annotation kinds: measureDistance; measurePerimeter (open polyline); measureArea; count.
 - Optional --execute-synthetic calls vendor Python library via an **isolated new app instance**, creates a NEW marked PDF and reopens it to read IDs. It will not attach to an existing personal application session. Never produces an approval.
-- Native ID readback alone cannot verify the semantic feature, actual numeric quantity, scale or BAX compatibility.
+- Native ID readback alone cannot verify the semantic feature, actual numeric quantity, scale or BAX compatibility. Missing numeric native measurement and Count marker-only cases remain AI_PROPOSED; numeric save/readback may reach MEASURED but never QA_CHECKED or approval. A changed native markup type is refused.
 
 ## Command
 
@@ -63,6 +63,6 @@ The synthetic_fixture flag is an operator assertion, NOT an authentication mecha
 
 ## Evidence and limitations
 
-On Linux / Python 3.13, six mock adapter tests passed, zero failures; no paid APIs, GitHub Actions or network required. Only new adapter tests ran, not the complete repository suite: this environment cannot clone GitHub via its shell (hostname unavailable). The fake app verifies control flow and safety checks, NOT vendor math or rendering. These limits are deliberately retained in this PR.
+On Linux / Python 3.13, eight mock adapter tests passed, zero failures; no paid APIs, GitHub Actions or network required. Also created a real synthetic vector PDF with PyMuPDF 1.26.7 and ran the dry-run CLI: exit 0, scale 10 app points/m, output PDF absent, original unchanged. Only new adapter tests ran, not the complete repository suite: this environment cannot clone GitHub via its shell (hostname unavailable). The fake app verifies control flow and safety checks, NOT vendor math or rendering. These limits are deliberately retained in this PR.
 
 Upstream sources: https://github.com/OpenAEC-Foundation/open-pdf-studio ; https://github.com/OpenAEC-Foundation/open-pdf-studio/blob/main/docs/python-library.md ; https://github.com/OpenAEC-Foundation/open-pdf-studio/blob/main/mcp-stdio/tools.json
