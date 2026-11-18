@@ -91,7 +91,8 @@ class AdapterTests(unittest.TestCase):
     def test_save_and_reopen_mock_not_an_approval(self):
         ops = plan_operations(self.plan)
         result = execute_synthetic(ops, lambda: FakeApp({}))
-        self.assertEqual(result["status"], "MEASURED")
+        self.assertEqual(result["status"], "AI_PROPOSED")
+        self.assertFalse(result["readback"]["MH-1"]["numeric_quantity_available"])
         self.assertTrue(result["review_required"])
         self.assertFalse(result["quantity_eligible_for_bax"])
         self.assertIsNone(result["human_review"])
@@ -121,6 +122,8 @@ class AdapterTests(unittest.TestCase):
         v = copy.deepcopy(self.plan); v["features"][0]["do_not_sum"] = None; variants.append(v)
         v = copy.deepcopy(self.plan); v["features"][0]["points"][1][0] = float("nan"); variants.append(v)
         v = copy.deepcopy(self.plan); v["page_index"] = True; variants.append(v)
+        v = copy.deepcopy(self.plan); v["features"][0]["kind"] = []; variants.append(v)
+        v = copy.deepcopy(self.plan); v["scale_reference"]["unit"] = []; variants.append(v)
         for v in variants:
             with self.subTest(v=repr(v)[-120:]):
                 with self.assertRaises(AdapterRefusal):
