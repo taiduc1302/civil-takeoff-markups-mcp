@@ -72,7 +72,7 @@ def plan_operations(plan):
         raise AdapterRefusal("page_label required")
 
     ref = plan.get("scale_reference")
-    if not isinstance(ref, dict) or ref.get("unit") not in {"m", "mm", "ft"} or not finite_positive(ref.get("known_length")):
+    if not isinstance(ref, dict) or not isinstance(ref.get("unit"), str) or ref["unit"] not in {"m", "mm", "ft"} or not finite_positive(ref.get("known_length")):
         raise AdapterRefusal("known length, length unit and independent scale basis required")
     if not isinstance(ref.get("basis"), str) or not ref["basis"].strip():
         raise AdapterRefusal("nonempty scale basis required")
@@ -97,7 +97,7 @@ def plan_operations(plan):
             raise AdapterRefusal(f"features[{i}] has missing, invalid or duplicate id")
         seen.add(feature_id)
         typ = feat.get("kind")
-        if typ not in {"Length", "Area", "Count"}:
+        if not isinstance(typ, str) or typ not in {"Length", "Area", "Count"}:
             raise AdapterRefusal(f"features[{i}] has unsupported measurement kind")
         vertices = feat.get("points")
         if not isinstance(vertices, list) or len(vertices) < {"Length": 2, "Area": 3, "Count": 1}[typ]:
@@ -172,12 +172,29 @@ def execute_synthetic(operations, app_factory):
         doc.close(save=False)
         saved = app.open(str(output))
         readback = {}
-        for feature_id, native_id in ids.items():
+        numeric_complete = True
+        for action in operations["actions"]:
+            feature_id = action["id"]
+            native_id = ids[feature_id]
             value = saved.annotations.get(native_id)
             if not isinstance(value, dict) or value.get("id") != native_id:
                 raise AdapterRefusal(f"saved readback missing annotation {feature_id}; REVIEW REQUIRED")
+            if value.get("type") != action["type"]:
+                raise AdapterRefusal(f"saved annotation type changed for {feature_id}; REVIEW REQUIRED")
+            # Count marker presence is not proof of a counted quantity.
+            if action["type"] == "count":
+                measure, unit = None, None
+            elif action["type"] == "measureArea" and isinstance(value.get("area"), dict):
+                measure, unit = value["area"].get("value"), value["area"].get("unit")
+            else:
+                measure, unit = value.get("measureValue"), value.get("measureUnit")
+            numeric_ok = finite_positive(measure) and isinstance(unit, str) and bool(unit.strip())
+            numeric_complete = numeric_complete and numeric_ok
             readback[feature_id] = {"native_id": native_id, "type": value.get("type"),
-                                    "has_measurement_text": bool(value.get("measureText"))}
+                                    "numeric_quantity_available": numeric_ok,
+                                    "quantity": float(measure) if numeric_ok else None,
+                                    "unit": unit if numeric_ok else None,
+                                    "do_not_sum": action["do_not_sum"]}
         saved.close(save=False)
     if hashlib.sha256(source.read_bytes()).hexdigest() != operations["source_sha256"]:
         raise AdapterRefusal("original changed unexpectedly; investigate immediately")
