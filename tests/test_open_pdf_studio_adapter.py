@@ -151,5 +151,42 @@ class AdapterTests(unittest.TestCase):
             execute_synthetic(plan_operations(self.plan), lambda: BadApp({}))
 
 
+    def test_numeric_native_measurement_still_needs_independent_qa(self):
+        plan = copy.deepcopy(self.plan)
+        plan["features"] = plan["features"][:1]
+        class NumericAnnotations(FakeAnnotations):
+            def add(self, kind, page, **props):
+                native_id = super().add(kind, page, **props)
+                self.database[native_id].update(measureValue=10.0, measureUnit="m")
+                return native_id
+        class NumericDoc(FakeDoc):
+            def __init__(self, store, path):
+                super().__init__(store, path)
+                self.annotations = NumericAnnotations(store)
+        class NumericApp(FakeApp):
+            def open(self, path):
+                return NumericDoc(self.store, path)
+        result = execute_synthetic(plan_operations(plan), lambda: NumericApp({}))
+        self.assertEqual(result["status"], "MEASURED")
+        self.assertTrue(result["review_required"])
+        self.assertFalse(result["quantity_eligible_for_bax"])
+        self.assertEqual(result["readback"]["PIPE-1"]["quantity"], 10)
+
+    def test_native_type_mismatch_refused(self):
+        class WrongTypeAnnotations(FakeAnnotations):
+            def get(self, native_id):
+                row = super().get(native_id)
+                return dict(row, type="line") if row else None
+        class WrongTypeDoc(FakeDoc):
+            def __init__(self, store, path):
+                super().__init__(store, path)
+                self.annotations = WrongTypeAnnotations(store)
+        class WrongTypeApp(FakeApp):
+            def open(self, path):
+                return WrongTypeDoc(self.store, path)
+        with self.assertRaisesRegex(AdapterRefusal, "type changed"):
+            execute_synthetic(plan_operations(self.plan), lambda: WrongTypeApp({}))
+
+
 if __name__ == "__main__":
     unittest.main()
