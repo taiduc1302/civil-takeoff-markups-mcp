@@ -66,3 +66,7 @@ The synthetic_fixture flag is an operator assertion, NOT an authentication mecha
 On Linux / Python 3.13, eight mock adapter tests passed, zero failures; no paid APIs, GitHub Actions or network required. Also created a real synthetic vector PDF with PyMuPDF 1.26.7 and ran the dry-run CLI: exit 0, scale 10 app points/m, output PDF absent, original unchanged. Only new adapter tests ran, not the complete repository suite: this environment cannot clone GitHub via its shell (hostname unavailable). The fake app verifies control flow and safety checks, NOT vendor math or rendering. These limits are deliberately retained in this PR.
 
 Upstream sources: https://github.com/OpenAEC-Foundation/open-pdf-studio ; https://github.com/OpenAEC-Foundation/open-pdf-studio/blob/main/docs/python-library.md ; https://github.com/OpenAEC-Foundation/open-pdf-studio/blob/main/mcp-stdio/tools.json
+
+### Upstream capability drift detected
+
+On 2026-11-17, the upstream README displays 94 MCP tools, while the current default-branch mcp-stdio/tools.json catalogue retrieved through GitHub contains 96 entries. This is a source/version discrepancy, **not** proof that 96 tools are exposed by any installed release. Live acceptance MUST discover actual tool schemas and version instead of trusting the badge, this file, or a Python wheel's generated layer. No assumption of Count or native save/readback fidelity from catalogue presence alone.
